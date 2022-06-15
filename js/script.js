@@ -122,6 +122,17 @@ function startGame() {
       // altrimenti salvo numero in array azzeccati, cella azzurra
       // quando length array numeri azzeccati uguale a maxAttemps gioco finisce
     }
+    // gestione dei messaggi di fine partita
+    // gameResult sarà 'win' in caso di vittoria
+    // secondo attributo per calcolare quantità di numeri giusti indovinati
+    function gameOutcome(gameResult, safeNumbers) {
+      if (gameResult === 'win') {
+        alert('Hai indovinato tutti i numeri! Hai vinto');
+      } else if (gameResult === 'lost') {
+        alert('Hai perso');
+        alert('Totale di numeri indovinati: ' + safeNumbers.length);
+      }
+    }
   }
 
   console.log('quantità azzeccati', safeNumbers.length);
@@ -130,18 +141,6 @@ function startGame() {
 // ------------------------
 // UTILITY FUNCTIONS
 // ------------------------
-
-// gestione dei messaggi di fine partita
-// gameResult sarà 'win' in caso di vittoria
-// secondo attributo per calcolare quantità di numeri giusti indovinati
-function gameOutcome(gameResult, safeNumbers) {
-  if (gameResult === 'win') {
-    alert('Hai indovinato tutti i numeri! Hai vinto');
-  } else if (gameResult === 'lost') {
-    alert('Hai perso');
-    alert('Totale di numeri indovinati: ' + safeNumbers.length);
-  }
-}
 
 // genera un array di x elementi con numeri casuali tra minRange e maxRange (inclusi)
 // quantityOfBombs --> quantità elementi da creare
