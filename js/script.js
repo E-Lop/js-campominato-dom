@@ -37,6 +37,11 @@ playBtn.addEventListener('click', startGame);
 function startGame() {
   // Elementi HTML
   const mainGrid = document.getElementById('main_grid');
+
+  // a inizio partita svuoto la griglia e rimuovo le classi
+  mainGrid.innerHTML = '';
+  mainGrid.className = '';
+
   // numero di bombe nel gioco
   const quantityOfBombs = 16;
   //   variabile che determina la classe della griglia, quindi numero di celle, default su massima difficoltà
@@ -87,9 +92,11 @@ function startGame() {
       const newCell = document.createElement('div');
       // aggiungere testo
       newCell.innerHTML = `<span>${i}</span>`;
-      //   aggiunta classe square
+      //   aggiunta classe square e dimensione dinamica
       newCell.classList.add('square');
       newCell.classList.add(cellClass);
+      // aggiungere event listener
+
       //   appendere a mainGrid
       mainGrid.append(newCell);
     }
