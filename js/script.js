@@ -96,14 +96,36 @@ function startGame() {
       newCell.classList.add('square');
       newCell.classList.add(cellClass);
       // aggiungere event listener
-
+      newCell.addEventListener('click', clickOnCell);
       //   appendere a mainGrid
       mainGrid.append(newCell);
     }
   }
+  function clickOnCell() {
+    // leggere contenuto cella
+    const thisNumber = parseInt(this.querySelector('span').innerHTML);
+    // se il numero è una bomba, cella rossa e
+    if (bomba.includes(thisNumber)) {
+      this.classList.add('red');
+      // div con testo sconfitta
+      gameOutcome('lost');
+    } else {
+      this.classList.add('blue');
+      safeNumbers.push(thisNumber);
+      console.log('this number', thisNumber);
+      console.log('numeri azzeccati', safeNumbers);
+    }
+    if (safeNumbers.length === numberOfAttempts) {
+      // funzione gestione outcome gioco, esito vittoria
+      gameOutcome('win', safeNumbers);
+
+      // altrimenti salvo numero in array azzeccati, cella azzurra
+      // quando length array numeri azzeccati uguale a maxAttemps gioco finisce
+    }
+  }
+
+  console.log('quantità azzeccati', safeNumbers.length);
 }
-const difficultyLevel = document.getElementById('difficulty_level');
-console.log(difficultyLevel);
 
 // ------------------------
 // UTILITY FUNCTIONS
@@ -115,7 +137,7 @@ console.log(difficultyLevel);
 function gameOutcome(gameResult, safeNumbers) {
   if (gameResult === 'win') {
     alert('Hai indovinato tutti i numeri! Hai vinto');
-  } else {
+  } else if (gameResult === 'lost') {
     alert('Hai perso');
     alert('Totale di numeri indovinati: ' + safeNumbers.length);
   }
