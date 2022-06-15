@@ -29,3 +29,81 @@ BONUS:
 // La partita termina
 // se length array numeri azzeccati === maxRange --> gioco finito e alert vittoria
 // ----------------------------------------------------------------------
+
+// collegamento con il bottone che fa iniziare il gioco
+const playBtn = document.getElementById('play_btn');
+playBtn.addEventListener('click', startGame);
+
+function startGame() {
+  // numero di bombe nel gioco
+  const quantityOfBombs = 16;
+
+  // chiedo all'utente il livello di difficoltà del gioco
+  const difficultyLevel = document.getElementById('difficulty_level').value;
+  console.log('livello difficoltà', difficultyLevel);
+
+  // range di numeri per la partita, default su massima difficoltà
+  let maxRange = 49;
+
+  // calcolo di maxRange
+  if (difficultyLevel === '1') {
+    maxRange = 100;
+  } else if (difficultyLevel === '2') {
+    maxRange = 81;
+  }
+
+  // variabile che contiene le bombe
+  let bomba = generateBombs(quantityOfBombs, 1, maxRange);
+  console.log('bomba', bomba);
+
+  // numero di tentativi, quindi durata massima partita
+  const numberOfAttempts = maxRange - quantityOfBombs;
+  console.log('# tentativi', numberOfAttempts);
+
+  // array che contiene i numeri indicati dall'utente durante il gioco che non sono bombe
+  let safeNumbers = [];
+
+  // generazione della griglia
+}
+const difficultyLevel = document.getElementById('difficulty_level');
+console.log(difficultyLevel);
+
+// ------------------------
+// UTILITY FUNCTIONS
+// ------------------------
+
+// gestione dei messaggi di fine partita
+// gameResult sarà 'win' in caso di vittoria
+// secondo attributo per calcolare quantità di numeri giusti indovinati
+function gameOutcome(gameResult, safeNumbers) {
+  if (gameResult === 'win') {
+    alert('Hai indovinato tutti i numeri! Hai vinto');
+  } else {
+    alert('Hai perso');
+    alert('Totale di numeri indovinati: ' + safeNumbers.length);
+  }
+}
+
+// genera un array di x elementi con numeri casuali tra minRange e maxRange (inclusi)
+// quantityOfBombs --> quantità elementi da creare
+// minRange --> valore minimo del numero casuale
+// maxRange --> valore massimo del numero casuale
+function generateBombs(quantityOfBombs, minRange, maxRange) {
+  // genero array per numeri casuali
+  const randomNumbersArray = [];
+
+  // genero elementi finchè array.length = quantityOfBombs
+  while (randomNumbersArray.length < quantityOfBombs) {
+    const randomNumber = getRndInteger(minRange, maxRange);
+    // se il numero non è gia presente nell'array allora lo aggiungo
+    if (!randomNumbersArray.includes(randomNumber)) {
+      randomNumbersArray.push(randomNumber);
+    }
+  }
+  return randomNumbersArray;
+}
+
+// generatore di numeri casuali tra min e max (inclusi)
+function getRndInteger(min, max) {
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}
