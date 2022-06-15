@@ -3,3 +3,55 @@
   padding: 0;
   box-sizing: border-box;
 }
+
+/* HEADER */
+header {
+  display: flex;
+  align-items: center;
+  height: 80px;
+  /* todo test */
+  background-color: aqua;
+}
+header .container {
+  display: flex;
+}
+header .row {
+  width: 100%;
+}
+
+/* MAIN */
+main {
+  padding: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#main_grid {
+  height: 600px;
+  width: 600px;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: flex-start;
+
+  /* todo test */
+  background-color: azure;
+}
+.square {
+  background-color: lightpink;
+  border: 1px solid black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.square.d_easy {
+  width: calc(100% / 10);
+  height: calc(100% / 10);
+}
+.square.d_hard {
+  width: calc(100% / 9);
+  height: calc(100% / 9);
+}
+.square.d_crazy {
+  width: calc(100% / 7);
+  height: calc(100% / 7);
+}

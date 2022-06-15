@@ -10,3 +10,22 @@ Al termine della partita il software deve comunicare il punteggio, cioè il nume
 BONUS:
 1- quando si clicca su una bomba e finisce la partita, evitare che si possa cliccare su altre celle
 2- quando si clicca su una bomba e finisce la partita, il software scopre tutte le bombe nascoste */
+
+// ----------------------------------------------------------------------
+// ANALISI
+// FASE PREPARATORIA
+// prendo il livello di difficoltà dal select in HTML
+// se 1: 1-100; se 2: 1-81; se 3: 1-49
+// genero 16 bombe, numeri compresi tra 1 e maxRange (100, 81, 49)
+// maxTentativi = maxRange - bombe (16)
+// al click sul bottone genero una griglia con [maxRange] numero di celle
+
+// FASE LOGICA
+// click su btn --> reset griglia + inizio gioco
+// click su cella: se === bomba ---> cella diventa rossa, gioco finito e alert sconfitta + punteggio
+// altrimenti:
+//      cella diventa azzurra, impedisco reclick, inserisco in array numeri azzeccati
+//
+// La partita termina
+// se length array numeri azzeccati === maxRange --> gioco finito e alert vittoria
+// ----------------------------------------------------------------------
