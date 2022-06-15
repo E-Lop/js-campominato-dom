@@ -107,20 +107,23 @@ function startGame() {
     // se il numero è una bomba, cella rossa e
     if (bomba.includes(thisNumber)) {
       this.classList.add('red');
+      //   rendo l'elemento non più cliccabile
+      this.style.pointerEvents = 'none';
       // div con testo sconfitta
       gameOutcome('lost', safeNumbers);
+      // altrimenti salvo numero in array azzeccati, cella azzurra
     } else {
       this.classList.add('blue');
+      //   rendo l'elemento non più cliccabile
+      this.style.pointerEvents = 'none';
       safeNumbers.push(thisNumber);
       console.log('this number', thisNumber);
       console.log('numeri azzeccati', safeNumbers);
     }
+    // quando length array numeri azzeccati uguale a maxAttemps gioco finisce
     if (safeNumbers.length === numberOfAttempts) {
       // funzione gestione outcome gioco, esito vittoria
       gameOutcome('win', safeNumbers);
-
-      // altrimenti salvo numero in array azzeccati, cella azzurra
-      // quando length array numeri azzeccati uguale a maxAttemps gioco finisce
     }
     // gestione dei messaggi di fine partita
     // gameResult sarà 'win' in caso di vittoria
