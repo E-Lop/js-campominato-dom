@@ -35,8 +35,13 @@ const playBtn = document.getElementById('play_btn');
 playBtn.addEventListener('click', startGame);
 
 function startGame() {
+  // Elementi HTML
+  const mainGrid = document.getElementById('main_grid');
   // numero di bombe nel gioco
   const quantityOfBombs = 16;
+  //   variabile che determina la classe della griglia, quindi numero di celle, default su massima difficoltà
+  let mainGridClass = 'd_crazy';
+  let cellClass = 'd_crazy';
 
   // chiedo all'utente il livello di difficoltà del gioco
   const difficultyLevel = document.getElementById('difficulty_level').value;
@@ -48,8 +53,12 @@ function startGame() {
   // calcolo di maxRange
   if (difficultyLevel === '1') {
     maxRange = 100;
+    mainGridClass = 'd_easy';
+    cellClass = 'd_easy';
   } else if (difficultyLevel === '2') {
     maxRange = 81;
+    mainGridClass = 'd_hard';
+    cellClass = 'd_hard';
   }
 
   // variabile che contiene le bombe
@@ -64,6 +73,27 @@ function startGame() {
   let safeNumbers = [];
 
   // generazione della griglia
+  generateGrid();
+
+  //   funzione che popola mainGrid
+  function generateGrid() {
+    // aggiungere classe alla griglia
+    mainGrid.classList.add(mainGridClass);
+
+    // a secondo del livello di difficoltà scelto
+    for (let i = 1; i <= maxRange; i++) {
+      // creare cella
+      // <!-- <div class="square"><span>1</span></div> -->
+      const newCell = document.createElement('div');
+      // aggiungere testo
+      newCell.innerHTML = `<span>${i}</span>`;
+      //   aggiunta classe square
+      newCell.classList.add('square');
+      newCell.classList.add(cellClass);
+      //   appendere a mainGrid
+      mainGrid.append(newCell);
+    }
+  }
 }
 const difficultyLevel = document.getElementById('difficulty_level');
 console.log(difficultyLevel);
