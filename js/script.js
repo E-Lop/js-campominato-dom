@@ -108,7 +108,7 @@ function startGame() {
     if (bomba.includes(thisNumber)) {
       this.classList.add('red');
       // div con testo sconfitta
-      gameOutcome('lost');
+      gameOutcome('lost', safeNumbers);
     } else {
       this.classList.add('blue');
       safeNumbers.push(thisNumber);
@@ -134,8 +134,6 @@ function startGame() {
       }
     }
   }
-
-  console.log('quantità azzeccati', safeNumbers.length);
 }
 
 // ------------------------
