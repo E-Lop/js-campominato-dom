@@ -88,7 +88,7 @@ function startGame() {
     // a secondo del livello di difficoltà scelto
     for (let i = 1; i <= maxRange; i++) {
       // creare cella
-      // <!-- <div class="square"><span>1</span></div> -->
+      // <!-- <div class="square"><span>i</span></div> -->
       const newCell = document.createElement('div');
       // aggiungere testo
       newCell.innerHTML = `<span>${i}</span>`;
@@ -134,6 +134,22 @@ function startGame() {
       } else if (gameResult === 'lost') {
         alert('Hai perso');
         alert('Totale di numeri indovinati: ' + safeNumbers.length);
+      }
+      const allSquares = document.querySelectorAll('.square');
+      for (let i = 0; i < allSquares.length; i++) {
+        const thisSquare = allSquares[i];
+
+        // rendo non cliccabile
+        thisSquare.style.pointerEvents = 'none';
+
+        // se il numero in questa cella è tra le bombe
+        // gli aggiungo la classe bomb
+        const thisSquareNumber = parseInt(
+          thisSquare.querySelector('span').innerHTML
+        );
+        if (bomba.includes(thisSquareNumber)) {
+          thisSquare.classList.add('red');
+        }
       }
     }
   }

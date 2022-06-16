@@ -37,7 +37,7 @@ main {
   background-color: azure;
 }
 .square {
-  background-color: lightpink;
+  background-color: lightgoldenrodyellow;
   border: 1px solid black;
   display: flex;
   justify-content: center;
@@ -60,4 +60,7 @@ main {
 }
 .blue {
   background-color: lightblue;
+}
+.no_more_clicks {
+  pointer-events: none;
 }
